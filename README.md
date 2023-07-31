@@ -16,6 +16,11 @@
 <script src="./Popup.js"></script>
 ```
 
+## 实例化对象
+```js
+var popup = new Popup();
+```
+
 ## 示例1: 提示弹窗
 ```js
 popup.alert('这是一个提示弹窗');
