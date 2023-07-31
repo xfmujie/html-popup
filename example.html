@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<head>
+  <title>Popup.js模态弹窗示例</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+  <input type="button" id="btn1" value="提示弹窗">
+  <input type="button" id="btn2" value="确认弹窗">
+  <input type="button" id="btn3" value="文本输入弹窗">
+  <input type="button" id="btn4" value="消息弹窗">
+
+  <!-- 引入Popup.js-->
+  <script src="./Popup.js"></script>
+  <script>
+
+    //实例化对象
+    const popup = new Popup();
+    
+    document.getElementById('btn1').onclick = function () {
+      // 示例1: 提示弹窗
+      popup.alert('这是一个提示弹窗');
+    }
+
+    document.getElementById('btn2').onclick = function () {
+      // 示例2: 确认弹窗
+      popup.confirm('是否确认？')
+        .then(isEnter => {
+          // 确定返回true  取消返回false
+          if (isEnter) console.log('你点击了确定');
+          else console.log('你点击了取消');
+        });
+    }
+
+    document.getElementById('btn3').onclick = function () {
+      // 示例3: 文本输入弹窗
+      popup.prompt('请输入文本')
+        .then(inputText => {
+          // 确定返回输入的字符串  取消返回null
+          if (inputText) console.log(`你输入的内容是: ${inputText}`);
+          else console.log('你点击了取消');
+        });
+    }
+
+    document.getElementById('btn4').onclick = function () {
+      // 示例4: 消息弹窗
+      popup.msg('这是一个消息弹窗 可设定时间自动关闭', 1);  // 自动关闭时间(选填), 单位(秒), 缺省值1
+    }
+
+  </script>
+</body>
