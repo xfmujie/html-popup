@@ -2,7 +2,7 @@
  * @file Popup.js
  * @description 利用html的<dialog>标签实现常用模态弹窗显示
  * @author 昔枫沐杰
- * @github https://github.com/xfmujie
+ * @github https://github.com/xfmujie/html-popup
  * @date 创建日期: 2023/7/30
  */
 

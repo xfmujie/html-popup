@@ -11,6 +11,7 @@
   <input type="button" id="btn2" value="确认弹窗">
   <input type="button" id="btn3" value="文本输入弹窗">
   <input type="button" id="btn4" value="消息弹窗">
+  <input type="button" id="btn5" value="消息弹窗的另一种用法">
 
   <!-- 引入Popup.js-->
   <script src="./Popup.js"></script>
@@ -18,7 +19,7 @@
 
     //实例化对象
     const popup = new Popup();
-    
+
     document.getElementById('btn1').onclick = function () {
       // 示例1: 提示弹窗
       popup.alert('这是一个提示弹窗');
@@ -46,7 +47,26 @@
 
     document.getElementById('btn4').onclick = function () {
       // 示例4: 消息弹窗
-      popup.msg('这是一个消息弹窗 可设定时间自动关闭', 1);  // 自动关闭时间(选填), 单位(秒), 缺省值1
+      // 该方法有3个参数, 分别为提示文字, 自动关闭弹窗时间(可选, 单位:秒), 回调函数(可选), 详细用法见示例5
+      popup.msg('这是一个消息弹窗 可设定时间自动关闭');
+    }
+
+    document.getElementById('btn5').onclick = function () {
+      /* 示例5: 消息弹窗的另一种用法
+      使用场景: 提示用户正在等待任务完成; 
+      使用逻辑: 当弹窗显示超时(超过自动关闭弹窗时间)时, 弹窗关闭并执行传入的回调函数; 如任务已在设定时间内完成, 调用.msgClose()方法关闭弹窗, 此时回调函数不会执行;
+      */
+      // 请求场景示例:
+      popup.msg('正在请求……', 5, function(){
+        console.log('请求超时！');
+      });
+      fetch('https://api.mu-jie.cc/stray-birds')
+      .then(Response => Response.text())
+      .then(data => {
+        // 请求完成，关闭弹窗
+        popup.msgClose();
+        console.log(data);
+      });
     }
 
   </script>
