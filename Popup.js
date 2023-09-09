@@ -4,6 +4,7 @@
  * @author 昔枫沐杰
  * @github https://github.com/xfmujie/html-popup
  * @date 创建日期: 2023/7/30
+ * @version 1.0.1
  */
 
 class Popup {
@@ -153,11 +154,14 @@ class Popup {
   msg(prompt, autoCloseTime = 1, callback = function () { }) {
     this.dialog.innerHTML = prompt;
     this.dialog.showModal();
-    if (autoCloseTime) {
+    if (autoCloseTime != 0) {
       this.timeOut = setTimeout(() => {
         this.dialog.close();
         callback();
       }, autoCloseTime * 1000);
+    }
+    else {
+      return;
     }
   }
 
